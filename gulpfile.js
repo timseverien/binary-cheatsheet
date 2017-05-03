@@ -32,5 +32,5 @@ gulp.task('styles', require(path.join(DIR_TASKS, 'styles'))(gulp, config));
 gulp.task('views', require(path.join(DIR_TASKS, 'views'))(gulp, config));
 gulp.task('sync', require(path.join(DIR_TASKS, 'sync'))(gulp, config));
 
-gulp.task('default', gulp.series('clean', gulp.parallel('images', 'styles', 'views')));
+gulp.task('default', gulp.series('clean', gulp.parallel('images', 'styles'), 'views'));
 gulp.task('watch', require(path.join(DIR_TASKS, 'watch'))(gulp, config));
