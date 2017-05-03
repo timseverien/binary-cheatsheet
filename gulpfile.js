@@ -8,6 +8,7 @@ const DIR_TASKS = path.resolve('bin', 'build');
 const config = {
 	browserSync: require('browser-sync').create(),
 	paths: {
+		clean: DIR_DESTINATION,
 		modules: path.join(__dirname, 'node_modules'),
 		images: {
 			source: path.join(DIR_SOURCE, 'images', '**', '*.{gif,jpg,png,svg}'),
