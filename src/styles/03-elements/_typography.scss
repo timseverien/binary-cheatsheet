@@ -1,0 +1,15 @@
+h1, h2, h3, h4, h5, h6 {
+	font-family: sans-serif;
+	font-weight: 700;
+	line-height: 1;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1 { font-size: golden-ratio(4, $ratio-perfect-forth); }
+h2 { font-size: golden-ratio(3, $ratio-perfect-forth); }
+h3 { font-size: golden-ratio(2, $ratio-perfect-forth); }
+h4 { font-size: golden-ratio(1, $ratio-perfect-forth); }
+h5 { font-size: golden-ratio(0, $ratio-perfect-forth); }
+h6 { font-size: golden-ratio(-1, $ratio-perfect-forth); }

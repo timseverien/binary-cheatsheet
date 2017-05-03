@@ -1,0 +1,92 @@
+<div id="practical" class="content">
+	<h2>Practical</h2>
+
+	<h4 id="practical-get">Get a bit</h4>
+	<p>First, a set of bits is shifted to the right until the bit of interest is all the way on the right. To get that bit only,
+		we can use the <strong>AND</strong> operator and one bit to get the result. We call this single bit a <strong>bitmask</strong>,
+		as if it masks one bit out.</p>
+	<pre class="code"><code>bitmask = 0b0001 <span class="code__comment">// you can discard the first 0&rsquo;s</span>
+(0b1<span class="code__interest">1</span>01 &gt;&gt; 2) &amp; bitmask = <span class="code__interest">1</span>
+(0b11<span class="code__interest">0</span>1 &gt;&gt; 1) &amp; bitmask = <span class="code__interest">0</span></code></pre>
+
+	<p>The bitmask detmines how much of the info is returned, so if I wish to get two bits, I could simply modify my mask.</p>
+
+	<pre class="code"><code>bitmask = 0b0011
+(0b<span class="code__interest">11</span>01) &gt;&gt; 2) &amp; bitmask = <span class="code__interest">11</span></code></pre>
+
+	<h4 id="practical-set">Set a bit</h4>
+	<p>To set a specific bit to <code>1</code>, you can use the <strong>OR</strong> operator.</p>
+	<pre class="code"><code>byte = 0b0000
+byte | (1 &lt;&lt; 2) = 0<span class="code__interest">1</span>00</code></pre>
+
+	<p>To set a specific bit to <code>0</code>, you can use the <strong>AND</strong> operator.</p>
+	<pre class="code"><code>byte = 0b1111
+byte &amp; (0 &lt;&lt; 2) = 1<span class="code__interest">0</span>11</code></pre>
+
+	<p>If you&rsquo;re not sure what you&rsquo;re going to set it to, the following trickery allows you to change a bit to any
+		value at a given position.</p>
+
+	<pre class="code"><code>x = 1 <span class="code__comment">// new value of bit...</span>
+n = 2 <span class="code__comment">// at this location</span>
+byte = 0b0010
+byte ^ (-x ^ byte) &amp; (1 &lt;&lt; n) = 0<span class="code__interest">1</span>10</code></pre>
+
+	<h4 id="practical-toggle">Toggle a bit</h4>
+	<p>The <strong>XOR</strong> operator returns <code>1</code> if operands are <em>unequal</em>. By having one operand set to
+		<code>1</code>, it toggles.</p>
+
+	<pre class="code"><code>n = 2 <span class="code__comment">// at this location</span>
+byte = 0b0100
+byte ^ (0b1 &lt;&lt; n) = 0<span class="code__interest">0</span>00</code></pre>
+
+	<h4 id="practical-store-flags">Store flags</h4>
+	<p>Flags, a fancy name for &ldquo;options,&rdquo; can easily be stored in a byte. It heavily relies on the examples above.</p>
+
+	<pre class="code"><code>FLAG_FIN    = 0b000001
+FLAG_SYN    = 0b000010
+FLAG_RESET  = 0b000100
+FLAG_PUSH   = 0b001000
+FLAG_ACK    = 0b010000
+FLAG_URGENT = 0b100000
+
+<span class="code__comment">// Set header to SYN, ACK and URGENT (110010)</span>
+header = FLAG_SYN | FLAG_ACK | FLAG_URGENT
+
+<span class="code__comment">// Turn off URGENT flag</span>
+header = header &amp; ~FLAG_URGENT</code></pre>
+
+	<h4 id="practical-hex-to-rgb">Hex to RGB</h4>
+	<p>Colours are often stored as hex. Sometimes, you will want to get the seperate channels. This example can be difficult to
+		grasp as we&rsquo;re applying bitwise operators on hexadecimal-noted values.</p>
+
+	<pre class="code"><code>mask = 0xFF
+
+<span class="code__comment">// rgb = 11100110 01000010 00011001</span>
+rgb = 0xE64219
+
+<span class="code__comment">// to get the red component,
+// shift 16 bits to the right
+// and get the first 8 bits
+// <span class="code__interest">11100110</span> <span class="code__removed">01000010 00011001</span></span>
+(rgb &gt;&gt; 16) &amp; mask = 0xE6 <span class="code__comment">// = 11100110</span>
+
+<span class="code__comment">// to get green,
+// shift 8 bits to the right,
+// and only get the first 8 bits
+// <span class="code__removed">11100110</span> <span class="code__interest">01000010</span> <span class="code__removed">00011001</span></span>
+(rgb &gt;&gt; 8) &amp; mask = 0x42 <span class="code__comment">// = 01000010</span>
+
+<span class="code__comment">// blue is the first 8 bits
+// <span class="code__removed">11100110 01000010</span> <span class="code__interest">00011001</span></span>
+rgb &amp; mask = 0x19</code></pre>
+
+	<h4 id="practical-rgb-to-hex">RGB to hex</h4>
+	<p>Of course, you can do the opposite as well.</p>
+
+	<pre class="code"><code>r = 0xE6 <span class="code__comment">// 11100110</span>
+g = 0x42 <span class="code__comment">// 11100110</span>
+b = 0x19 <span class="code__comment">// 00011001</span>
+
+<span class="code__comment">// 11100110 01000010 00011001</span>
+(r &lt;&lt; 16) | (g &lt;&lt; 8) | b = 0xE64219</code></pre>
+</div>

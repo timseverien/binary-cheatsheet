@@ -1,0 +1,9 @@
+$module: '.container';
+
+#{$module} {
+	margin: 1em auto;
+
+	@include breakpoint($wrapper-width) {
+		width: $wrapper-width;
+	}
+}

@@ -1,0 +1,12 @@
+a {
+  $link-color: $branding--primary;
+  $link-color--hover: lighten($link-color, 10%);
+  $link-color--active: darken($link-color, 5%);
+
+	color: $link-color;
+	font-weight: 700;
+	text-decoration: none;
+
+	&:hover { color: $link-color--hover; }
+	&:active { color: $link-color--active; }
+}

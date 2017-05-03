@@ -1,0 +1,14 @@
+$module: '.content';
+
+#{$module} {
+  margin-bottom: 4em;
+
+  * {
+    margin-top: 0;
+  }
+
+  * + *:not(ul):not(li) {
+    margin-top: 1em;
+    margin-bottom: 0;
+  }
+}

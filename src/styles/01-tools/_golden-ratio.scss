@@ -1,0 +1,23 @@
+@function golden-ratio($scale, $ratio: $ratio-golden, $base: 1em) {
+	@if $scale == 0 {
+		@return $base;
+	}
+
+	@return $base * power($ratio, $scale);
+}
+
+@function power($n, $exp) {
+	$num: 1;
+
+	@if $exp >= 0 {
+		@for $i from 1 through $exp {
+			$num: $num * $n;
+		}
+	} @else {
+		@for $i from $exp to 0 {
+			$num: $num / $n;
+		}
+	}
+
+	@return $num;
+}
