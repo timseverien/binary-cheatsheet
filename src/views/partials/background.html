@@ -1,4 +1,4 @@
-<div id="background" class="content">
+<div id="background" class="section content">
 	<h2>Background</h2>
 
 	<p>Looking at your computer screen, what do you see? Text, colours, images, video’s and much more. Everything you see, everything you store on your computer, every button you press is a stream of one’s and zero’s. Why? How does it work?</p>
@@ -17,7 +17,7 @@
 
 	<p>Binary is the purest representation of data on computers. It just isn’t very readable, but we can make it so!</p>
 
-	<h3>Representation</h3>
+	<h3 id="background-representation">Representation</h3>
 
 	<p>Many high-level programming languages have datatypes like integers, floats, strings, etc. These datatypes tell the computer what to do with binary data. Instead of modifying bits and bytes to add two integers, we can use an arithmetic operator, and the computer will know what to do at binary level. Datatypes also help determine the representation of the binary data.</p>
 
@@ -37,4 +37,9 @@
 00000011 = 3
 00101010 = 42
 11111111 = 255</code></pre>
+
+	<p>Understanding <code>uint</code> is quite valuable, as many programming languages use the datatype as default representation for binary data.</p>
+
+	<pre class="code"><code>const answer = 0b00101010;
+console.log(answer); <span class="code__comment">// 42</span></code></pre>
 </div>

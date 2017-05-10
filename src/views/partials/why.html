@@ -1,4 +1,4 @@
-<div id="why-use-binary" class="content">
+<div id="why-use-binary" class="section content">
   <h2>Why use binary?</h2>
 
   <p>So far, this all seems nerdy stuff. How can we possibly benefit from this in higher-level programming languages?</p>
@@ -12,17 +12,24 @@
   236,
   244,
   226,
-  139,
+  139,GF
   30
 ]</code></pre>
 
   <p>Because the data is sent as a string with a specific format, we’ll need 8 bits per character, assuming it’s UTF-8 encoded. Ignoring whitespace, above JSON string is 31 characters, making it 248 bits.</p>
 
-  <p>We can send the exact same data in binary, but way more efficient. Instead of returning a formatted string, because that’s what it is, we can send the data as one binary blob. For numbers ranging from 0 to 255, we only need 4 bits to represent each. Because each number has a fixed bit length, we can just concatinate them. The complete blob will be only 32 bits long, saving 87% of data!</p>
+  <p>We can send the exact same data in binary, but way more efficient. Instead of returning a formatted string, because that’s what JSON is, we can send the data as one binary blob. For numbers ranging from 0 to 255, we still need 8 bits to represent each. Because each number has a fixed bit length, we can just concatinate them. The complete blob will be 64 bits long, saving just under 75% of data!</p>
 
-  <p>This “trick” stops working if you have more than one value of unknown length, like strings. The strength of JSON isn’t size, but the flexibility. Because it’s sent as a string, it can be parsed dynamically regardless of length, and because specific symbols have specific meaning, the parser can guess the value types. This is why choosing the right format is an important consideration.</p>
+  <pre class="code"><code>00001010 <span class="code__comment">// 10</span>
+11110000 <span class="code__comment">// 240</span>
+01101010 <span class="code__comment">// 106</span>
+11101100 <span class="code__comment">// 236</span>
+11110100 <span class="code__comment">// 244</span>
+11100010 <span class="code__comment">// 226</span>
+10001011 <span class="code__comment">// 139</span>
+00011110 <span class="code__comment">// 30</span></code></pre>
 
-  <p>If you have values of fixed (binary) length, remember: blobs are efficient and awesome!</p>
+  <p>This “trick” stops working if you have more than one value of unknown length, like strings. The strength of JSON isn’t size, but the flexibility. Because it’s sent as a string, it can be parsed dynamically regardless of length. Then the whole string is interpret per character. It all depends on your use-case.</p>
 
   <!-- TODO: States -->
 </div>
