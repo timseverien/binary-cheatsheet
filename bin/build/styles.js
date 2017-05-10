@@ -1,4 +1,3 @@
-const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
 const sass = require('gulp-sass');
 const sassGlobbing = require('node-sass-globbing');
@@ -20,7 +19,6 @@ module.exports = (gulp, config) => () => {
 	};
 
 	return gulp.src(config.paths.styles.source)
-		.pipe(plumber())
 		.pipe(sass(OPTIONS_SASS))
 		.pipe(postcss(OPTIONS_POSTCSS))
 		.pipe(gulp.dest(config.paths.styles.destination));
