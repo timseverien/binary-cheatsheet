@@ -14,7 +14,7 @@ $module: '.note';
 
 	@include breakpoint($wrapper-width + $note-width + 8em) {
 		float: right;
-		margin: 0 #{-$note-width / 2} 0 1em;
+		margin-left: 1em;
 		width: $note-width;
 	}
 }

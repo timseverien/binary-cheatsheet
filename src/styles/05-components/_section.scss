@@ -1,0 +1,8 @@
+.section {
+  overflow: hidden;
+  margin-bottom: 4em;
+
+  &--highlighted {
+    background-color: $branding--soft;
+  }
+}
