@@ -1,9 +1,9 @@
 <div id="why-use-binary" class="section content">
   <h2>Why use binary?</h2>
 
-  <p>So far, this all seems nerdy stuff. How can we possibly benefit from this at higher levels?</p>
+  <p>So far, this all seems stuff most developers don’t need to know. How can we benefit from this knowledge at higher levels?</p>
 
-  <p>Imagine we’re building a web application that needs data from the server. The conventional communication format is JavaScript Object Notation (JSON). Let’s say we’re sending an array of 8 random integers ranging from 0 to 255:</p>
+  <p>Imagine we’re building a web application that needs data from a webserver. The conventional communication format is JavaScript Object Notation (JSON). Let’s say we’re sending an array of 8 random integers ranging from 0 to 255:</p>
 
   <pre class="code"><code>[
   10,
@@ -12,7 +12,7 @@
   236,
   244,
   226,
-  139,GF
+  139,
   30
 ]</code></pre>
 
@@ -29,7 +29,5 @@
 10001011 <span class="code__comment">// 139</span>
 00011110 <span class="code__comment">// 30</span></code></pre>
 
-  <p>This “trick” stops working if you have more than one value of unknown length, like strings. The strength of JSON isn’t size, but the flexibility. Because it’s sent as a string, it can be parsed dynamically regardless of length. Then the whole string is interpret per character. It all depends on your use-case.</p>
-
-  <!-- TODO: States -->
+  <p>TThe strength of JSON isn’t size, but flexibility. Because it’s a formatted string, it’s length and contents is irrelevant. The strength of binary is it’s size. It all depends on your use-case.</p>
 </div>
