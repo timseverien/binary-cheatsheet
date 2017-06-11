@@ -3,36 +3,30 @@
 
 	<p>Looking at your computer screen, what do you see? Text, colours, images, video’s and much more. Everything you see, everything you store on your computer, every button you press is a stream of one’s and zero’s. Why? How does it work?</p>
 
-	<p>Computers parts are able to store data via tiny components called flip-flops. They can be set to two states: “one” and “zero.” These circuits store a single <em>bit</em>. The value of a bit is merely the numeric representation of a flip-flop, <code>1</code> or <code>0</code>.</p>
+	<p>Computers parts are able to store data via tiny components called <a href="https://en.wikipedia.org/wiki/Flip-flop_(electronics)" rel="nofollow noopener">flip-flops</a>. They can be set to two states: “one” and “zero.” These circuits store a single <em>bit</em>, and the value of a bit is merely the numeric representation of a flip-flop, <code>1</code> or <code>0</code>.</p>
 
-	<aside class="note">
-		<p>Fun fact: many switches on electronic devices have a 1 and 0 printed on them, to indicate which side of the switch turns a device on and off.</p>
+	<p>To store other values than ones and zeroes, a couple of bits can be grouped. If one bit can have two different states, a group of two bits can have four. A group of four bits can have up to sixteen states. The amount of different states grows exponentially for every bit that is added to a group. <var>s</var> = <var>n</var><sup>2</sup>, where <var>s</var> is the number of states, and <var>n</var> the number of bits within the group.</p>
 
-		<img src="assets/images/switch.jpg" alt="A switch on a device labelled 1 and 0 to turn on and off the device">
-	</aside>
+	<p>The de-facto standard is to call a group of bits a <em>byte</em>, and one byte contains 8 bits. The more explicit term for an 8-bit group is <em>octet</em>.</p>
 
-	<p>Computers have a lot of these circuits we can use to store many bits, and we can group bits to store more complex values. If one bit can have two different states, a group of two bits can have four. A group of four bits can have up to sixteen states. The amount of different states grows exponentially for every bit that is added to a group. <var>s</var> = <var>n</var><sup>2</sup>, where <var>s</var> is the number of states, and <var>n</var> the number of bits within the group.</p>
-
-	<p>The de-facto standard is to call a group of bits a <em>byte</em>, and it is assumed one byte consists of 8 bits. The more explicit term for an 8-bit group is <em>octet</em>.</p>
-
-	<p>Binary is the purest representation of data on computers. It just isn’t very readable, but we can make it so!</p>
+	<p>Binary is the purest representation of data on computers, but it isn’t easy to understand what the data represents. How do we get from binary to other values?</p>
 
 	<h3 id="background-representation">Representation</h3>
 
-	<p>Many high-level programming languages have datatypes like integers, floats, strings, etc. These datatypes tell the computer what to do with binary data. Instead of modifying bits and bytes to add two integers, we can use an arithmetic operator, and the computer will know what to do at binary level. Datatypes also help determine the representation of the binary data.</p>
+	<p>Many typed programming languages have datatypes like integers, floats, strings, etc. These datatypes tell the computer what to do with binary data. Instead of modifying bits and bytes to add two integers, we can use an arithmetic operator, like a plus (+), and the computer will know what to do at binary level. Dynamically typed languages work identically, but the developer isn’t troubled with what value is what datatype.</p>
 
 	<p>Let’s have look at the representation of an 8-bit unsigned integer (<code>uint</code>). A <code>uint</code> is a positive integer starting from 0. Incrementing is very similar to our decimal system:</p>
 
 	<ol>
-		<li>Increment the least significant bit</li>
-		<li>If least significant bit reached the maximum value, reset and increment the left-hand bit</li>
+		<li>Increment the least significant number</li>
+		<li>If least significant number exceeds maximum value, reset and increment the number one place left</li>
 	</ol>
 
 	<pre class="code"><code><span class="code__comment">// No bits set => zero</span>
 00000000 = 0
 <span class="code__comment">// Increment least significant bit</span>
 00000001 = 1
-<span class="code__comment">// Least significant bit reached max, so we reset it and increment left-hand bit</span>
+<span class="code__comment">// Least significant bit exceeds max, so we reset it and increment bit left of it</span>
 00000010 = 2
 00000011 = 3
 00101010 = 42
@@ -40,6 +34,7 @@
 
 	<p>Understanding <code>uint</code> is quite valuable, as many programming languages use the datatype as default representation for binary data.</p>
 
-	<pre class="code"><code>const answer = 0b00101010;
+	<pre class="code"><code><span class="code__comment">// JavaScript</span>
+const answer = 0b00101010;
 console.log(answer); <span class="code__comment">// 42</span></code></pre>
 </div>
