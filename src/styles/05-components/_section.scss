@@ -5,4 +5,8 @@
   &--highlighted {
     background-color: $branding--soft;
   }
+
+  &--last {
+    margin-bottom: 0;
+  }
 }

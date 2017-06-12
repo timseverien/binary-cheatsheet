@@ -10,12 +10,13 @@
 
 	<meta name="description" content="A cheatsheet for bits and bytes">
 	<link rel="canonical" href="https://timseverien.github.io/binary-cheatsheet">
+	<link rel="manifest" href="/manifest.json">
 
 	<meta property="og:url" content="https://timseverien.github.io/binary-cheatsheet">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="The Binary Cheatsheet">
 	<meta property="og:description" content="A cheatsheet for bits and bytes">
-	<meta property="og:locale" content="en_GB">
+	<meta property="og:locale" content="en-GB">
 
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:creator" content="@timseverien">
@@ -28,6 +29,7 @@
 </head>
 
 <body>
+	<a href="#main" class="sr-only sr-only--focusable">Skip to main content</a>
 
 	<header class="section section--highlighted">
 		<div class="container content">
@@ -38,17 +40,15 @@
 
 	{{ table-of-contents }}
 
-	<main class="container">
+	<main class="container" id="main">
 		{{ background }}
 		{{ why }}
-
-		<!-- TODO: Rename operators to modification or w/e -->
 		{{ operators }}
 		{{ practical }}
 		{{ notes }}
 	</main>
 
-	<footer class="section section--highlighted">
+	<footer class="section section--highlighted section--last">
 		<div class="container">
 			<p>Made with <strong>&hearts;</strong>, by <span class="indenial">amnesic</span> <a href="https://twitter.com/timseverien" rel="nofollow noopener">Tim Severien</a>.</p>
 		</div>

@@ -1,0 +1,18 @@
+.sr-only {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+
+  &--focusable:focus {
+    height: initial;
+    width: initial;
+    margin: initial;
+    overflow: initial;
+    clip: initial;
+  }
+}
