@@ -1,37 +1,39 @@
 <div id="practical" class="section content">
 	<h2>Practical</h2>
 
-	<h4 id="practical-get">Get a bit</h4>
-	<p>First, a set of bits is shifted to the right until the bit of interest is all the way on the right. To get that bit only,
-		we can use the <strong>AND</strong> operator and one bit to get the result. We call this single bit a <strong>bitmask</strong>,
-		as if it masks one bit out.</p>
-	<pre class="code"><code>bitmask = 0b0001 <span class="code__comment">// you can discard the first 0&rsquo;s</span>
+	<h4 id="practical-get">Read a bit at a specific position</h4>
+	<p>First, a set of bits must be shifted to the right until the bit of interest is all the way on the right. To discard all other bits,
+		we can use the <strong>AND</strong> operator with a so called <strong>bitmask</strong>.</p>
+	<pre class="code"><code>bitmask = 0b1
+
+<span class="code__comment">// the highlighted bits are moved all the way to the right, then all other bits are cancelled out with the bitmask</span>
 (0b1<span class="code__interest">1</span>01 &gt;&gt; 2) &amp; bitmask = <span class="code__interest">1</span>
 (0b11<span class="code__interest">0</span>1 &gt;&gt; 1) &amp; bitmask = <span class="code__interest">0</span></code></pre>
 
-	<p>The bitmask detmines how much of the info is returned, so if I wish to get two bits, I could simply modify my mask.</p>
+	<p>The bitmask detmines how much of the info is returned, so to get two bits, a two-bit bitmask is required.</p>
 
-	<pre class="code"><code>bitmask = 0b0011
+	<pre class="code"><code>bitmask = 0b11
 (0b<span class="code__interest">11</span>01) &gt;&gt; 2) &amp; bitmask = <span class="code__interest">11</span></code></pre>
 
 	<h4 id="practical-set">Set a bit</h4>
-	<p>To set a specific bit to <code>1</code>, you can use the <strong>OR</strong> operator.</p>
+	<p>To set a specific bit to <code>1</code>, you can use the <strong>OR</strong> operator. First, the bit you wish to set is shifted to the position you wish to set it to, the <strong>OR</strong> operator does the rest.</p>
 	<pre class="code"><code>byte = 0b0000
-byte | (1 &lt;&lt; 2) = 0<span class="code__interest">1</span>00</code></pre>
+byte | (0b1 &lt;&lt; 2) = 0<span class="code__interest">1</span>00</code></pre>
 
-	<p>To set a specific bit to <code>0</code>, you can use the <strong>AND</strong> operator.</p>
+	<p>To set a specific bit to <code>0</code>, you must use the <strong>AND</strong> operator.</p>
 	<pre class="code"><code>byte = 0b1111
-byte &amp; (0 &lt;&lt; 2) = 1<span class="code__interest">0</span>11</code></pre>
+byte &amp; (0b0 &lt;&lt; 2) = 1<span class="code__interest">0</span>11</code></pre>
 
-	<p>If you&rsquo;re not sure what you&rsquo;re going to set it to, the following trickery allows you to change a bit to any
+	<p>If the new bit has a dynamic value, the following allows you to change a bit to any
 		value at a given position.</p>
 
 	<pre class="code"><code>x = 1 <span class="code__comment">// new value of bit...</span>
 n = 2 <span class="code__comment">// at this location</span>
 byte = 0b0010
+
 byte ^ (-x ^ byte) &amp; (1 &lt;&lt; n) = 0<span class="code__interest">1</span>10</code></pre>
 
-	<h4 id="practical-toggle">Toggle a bit</h4>
+	<h4 id="practical-toggle">Toggle a bit at a specific position</h4>
 	<p>The <strong>XOR</strong> operator returns <code>1</code> if operands are <em>unequal</em>. By having one operand set to
 		<code>1</code>, it toggles.</p>
 
@@ -40,7 +42,7 @@ byte = 0b0100
 byte ^ (0b1 &lt;&lt; n) = 0<span class="code__interest">0</span>00</code></pre>
 
 	<h4 id="practical-store-flags">Store flags</h4>
-	<p>Flags, a fancy name for &ldquo;options,&rdquo; can easily be stored in a byte. It heavily relies on the examples above.</p>
+	<p>Flags, a fancy name for &ldquo;options,&rdquo; can easily be stored in a byte. It heavily relies on the examples above. This example is inspired by the <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol">TCP protocol</a>.</p>
 
 	<pre class="code"><code>FLAG_FIN    = 0b000001
 FLAG_SYN    = 0b000010
@@ -55,11 +57,11 @@ header = FLAG_SYN | FLAG_ACK | FLAG_URGENT
 <span class="code__comment">// Turn off URGENT flag</span>
 header = header &amp; ~FLAG_URGENT</code></pre>
 
-	<h4 id="practical-hex-to-rgb">Hex to RGB</h4>
-	<p>Colours are often stored as hex. Sometimes, you will want to get the seperate channels. This example can be difficult to
-		grasp as we&rsquo;re applying bitwise operators on hexadecimal-noted values.</p>
+<h4 id="practical-hex-to-rgb">Hex to RGB</h4>
+<p>Colours are often stored as hexadecimals. Sometimes, you will want to get the value of each channel. Note that hexadecimals are just another representation of <code>uint</code>s.</p>
 
-	<pre class="code"><code>mask = 0xFF
+<pre class="code"><code><span class="code__comment">// mask = 11111111</span>
+mask = 0xFF
 
 <span class="code__comment">// rgb = 11100110 01000010 00011001</span>
 rgb = 0xE64219
