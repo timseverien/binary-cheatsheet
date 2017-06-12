@@ -2,8 +2,10 @@ $module: '.container';
 
 #{$module} {
 	margin: 1em auto;
+	padding-left: $wrapper-spacing;
+	padding-right: $wrapper-spacing;
 
-	@include breakpoint($wrapper-width) {
+	@include breakpoint($wrapper-width + ($wrapper-spacing * 2)) {
 		width: $wrapper-width;
 	}
 }
