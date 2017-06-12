@@ -12,11 +12,15 @@ const config = {
 			DIR_DESTINATION,
 			`!${DIR_DESTINATION}/manifest.json`
 		],
-		modules: path.join(__dirname, 'node_modules'),
 		images: {
 			source: path.join(DIR_SOURCE, 'images', '**', '*.{gif,jpg,png,svg}'),
 			destination: path.join(DIR_DESTINATION, 'assets', 'images'),
 		},
+		meta: {
+			source: path.join(DIR_SOURCE, 'meta', '**', '*'),
+			destination: DIR_DESTINATION,
+		},
+		modules: path.join(__dirname, 'node_modules'),
 		styles: {
 			source: path.join(DIR_SOURCE, 'styles', '**', '*.scss'),
 			destination: path.join(DIR_DESTINATION, 'assets', 'styles'),
@@ -32,9 +36,10 @@ const config = {
 
 gulp.task('clean', require(path.join(DIR_TASKS, 'clean'))(gulp, config));
 gulp.task('images', require(path.join(DIR_TASKS, 'images'))(gulp, config));
+gulp.task('meta', require(path.join(DIR_TASKS, 'meta'))(gulp, config));
 gulp.task('styles', require(path.join(DIR_TASKS, 'styles'))(gulp, config));
 gulp.task('views', require(path.join(DIR_TASKS, 'views'))(gulp, config));
 gulp.task('sync', require(path.join(DIR_TASKS, 'sync'))(gulp, config));
 
-gulp.task('default', gulp.series('clean', gulp.parallel('images', 'styles'), 'views'));
+gulp.task('default', gulp.series('clean', 'meta', gulp.parallel('images', 'styles'), 'views'));
 gulp.task('watch', require(path.join(DIR_TASKS, 'watch'))(gulp, config));
