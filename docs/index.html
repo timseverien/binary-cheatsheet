@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>The Binary Cheatsheet</title>
+
+	<meta name="description" content="A cheatsheet for bits and bytes">
+	<link rel="canonical" href="https://timseverien.github.io/binary-cheatsheet">
+	<link rel="manifest" href="/manifest.json">
+
+	<meta property="og:url" content="https://timseverien.github.io/binary-cheatsheet">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="The Binary Cheatsheet">
+	<meta property="og:description" content="A cheatsheet for bits and bytes">
+	<meta property="og:locale" content="en-GB">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@timseverien">
+
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon-96x96.png">
+
+	<style>/*! normalize-scss | MIT/GPLv2 License | bit.ly/normalize-scss */html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure{display:block}figure{margin:1em 40px}hr{-webkit-box-sizing:content-box;box-sizing:content-box;height:0;overflow:visible}main{display:block}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}input{overflow:visible}[type=checkbox],[type=radio]{-webkit-box-sizing:border-box;box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}fieldset{padding:.35em .75em .625em}legend{-webkit-box-sizing:border-box;box-sizing:border-box;display:table;max-width:100%;padding:0;color:inherit;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}details{display:block}summary{display:list-item}menu{display:block}canvas{display:inline-block}[hidden],template{display:none}body,html{color:#222;font-family:sans-serif;font-size:100%}body{background-color:#fafafa;line-height:1.6}:focus{outline:.25em solid #e6421a}a{color:#222;text-decoration:none;background-image:-webkit-gradient(linear,left bottom,left top,from(#222),to(#222));background-image:linear-gradient(0deg,#222,#222);background-repeat:no-repeat;background-size:100% .0625em;background-position:bottom}a:hover{color:#e6421a;background-image:-webkit-gradient(linear,left bottom,left top,from(#e6421a),to(#e6421a));background-image:linear-gradient(0deg,#e6421a,#e6421a)}a:active{color:#d03b17;background-image:-webkit-gradient(linear,left bottom,left top,from(#d03b17),to(#d03b17));background-image:linear-gradient(0deg,#d03b17,#d03b17)}h1,h2,h3,h4,h5,h6{font-family:sans-serif;font-weight:700;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h1{font-size:3.16049em}h2{font-size:2.37037em}h3{font-size:1.77778em}h4{font-size:1.33333em}h5{font-size:1em}h6{font-size:.75em}.container{margin:1em auto;padding-left:1em;padding-right:1em}@media (min-width:34em){.container{width:32em}}.content *{margin-top:0}.content *+:not(ul):not(li){margin-top:1em;margin-bottom:0}.code{background-color:#333;color:#fafafa;padding:2em;line-height:1.4}.code>code{display:block;white-space:pre-wrap}.code__added,.code__interest{color:#badd98}.code__removed{color:#dd9898;text-decoration:line-through}.code__comment{color:#7b7b7b}.code__comment .code__removed{color:#7b7b7b;text-decoration:line-through}.indenial{opacity:.5;text-decoration:line-through}.note{border:1px dashed #bababa;-webkit-box-sizing:border-box;box-sizing:border-box;margin:2em 0;padding:2em}.note>:last-child{margin-bottom:0}@media (min-width:56em){.note{float:right;margin-left:1em;width:16em}}.section{overflow:hidden;margin-bottom:4em}.section--highlighted{background-color:#f3f3f3}.section--last{margin-bottom:0}.sr-only{position:absolute;height:1px;width:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.sr-only--focusable:focus{height:auto;width:auto;margin:initial;overflow:initial;clip:auto}</style>
+</head>
+
+<body>
+	<a href="#main" class="sr-only sr-only--focusable">Skip to main content</a>
+
+	<header class="section section--highlighted">
+		<div class="container content">
+			<h1>The Bit Cheatsheet</h1>
+			<p>Are you a programmer who want to learn more about bits and bytes? Or do you just need to freshen up for your project? <strong>This cheatsheet is for you</strong>.</p>
+		</div>
+	</header>
+
+	<nav class="container section content">
+  <h2>Table of contents</h2>
+
+  <ul>
+    <li>
+      <a href="#background">Background</a>
+
+      <ul>
+        <li><a href="#background-representation">Representation</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#why-use-binary">Why use binary?</a></li>
+
+    <li>
+      <a href="#operators">Operators</a>
+
+      <ul>
+        <li><a href="#operator-not">NOT</a></li>
+        <li><a href="#operator-and">AND</a></li>
+        <li><a href="#operator-or">OR</a></li>
+        <li><a href="#operator-xor">XOR</a></li>
+        <li><a href="#operator-shift">Shift</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="#practical">Practical</a>
+
+      <ul>
+        <li><a href="#practical-get">Get a bit</a></li>
+        <li><a href="#practical-set">Set a bit</a></li>
+        <li><a href="#practical-toggle">Toggle a bit</a></li>
+        <li><a href="#practical-store-flags">Store flags</a></li>
+        <li><a href="#practical-hex-to-rgb">Hex to RGB</a></li>
+        <li><a href="#practical-rgb-to-hex">RGB to hex</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="#notes">Notes</a>
+
+      <ul>
+        <li><a href="#note-declare-binary-literal">Declare a binary literal</a></li>
+        <li><a href="#note-bitwise-operators">Bitwise operators</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+	<main class="container" id="main">
+		<div id="background" class="section content">
+	<h2>Background</h2>
+
+	<p>Looking at your computer screen, what do you see? Text, colours, images, video’s and much more. Everything you see, everything you store on your computer, every button you press is a stream of one’s and zero’s. Why? How does it work?</p>
+
+	<p>Computers parts are able to store data via tiny components called <a href="https://en.wikipedia.org/wiki/Flip-flop_(electronics)" rel="nofollow noopener">flip-flops</a>. They can be set to two states: “one” and “zero.” These circuits store a single <em>bit</em>, and the value of a bit is merely the numeric representation of a flip-flop, <code>1</code> or <code>0</code>.</p>
+
+	<p>To store other values than ones and zeroes, a couple of bits can be grouped. If one bit can have two different states, a group of two bits can have four. A group of four bits can have up to sixteen states. The amount of different states grows exponentially for every bit that is added to a group. <var>s</var> = <var>n</var><sup>2</sup>, where <var>s</var> is the number of states, and <var>n</var> the number of bits within the group.</p>
+
+	<p>The de-facto standard is to call a group of bits a <em>byte</em>, and one byte contains 8 bits. The more explicit term for an 8-bit group is <em>octet</em>.</p>
+
+	<p>Binary is the purest representation of data on computers, but it isn’t easy to understand what the data represents. How do we get from binary to other values?</p>
+
+	<h3 id="background-representation">Representation</h3>
+
+	<p>Many typed programming languages have datatypes like integers, floats, strings, etc. These datatypes tell the computer how to interpret binary data. Instead of modifying bits and bytes to add two integers, we can use arithmetic operators, like a plus (+), and the computer will know what to do at binary level. Dynamically typed languages do the same, but also removes the need to tell which variable has which type.</p>
+
+	<p>Let’s have look at the representation of an 8-bit unsigned integer (<code>uint</code>). A <code>uint</code> is a positive integer starting from 0. Incrementing is very similar to our decimal system:</p>
+
+	<ol>
+		<li>Increment the least significant number</li>
+		<li>If least significant number exceeds maximum value, reset and increment the number one place left</li>
+	</ol>
+
+	<pre class="code"><code><span class="code__comment">// No bits set => zero</span>
+00000000 = 0
+<span class="code__comment">// Increment least significant bit</span>
+00000001 = 1
+<span class="code__comment">// Least significant bit exceeds max, so we reset it and increment bit left of it</span>
+00000010 = 2
+00000011 = 3
+00101010 = 42
+11111111 = 255</code></pre>
+
+	<p>Understanding <code>uint</code> is quite valuable, as many programming languages use the datatype as default representation for binary data.</p>
+
+	<pre class="code"><code><span class="code__comment">// JavaScript</span>
+const answer = 0b00101010;
+console.log(answer); <span class="code__comment">// 42</span></code></pre>
+</div>
+
+		<div id="why-use-binary" class="section content">
+  <h2>Why use binary?</h2>
+
+  <p>At this point you might wonder why you’re reading this page. Why should you understand bits and bytes? How can you benefit from this knowledge when programming in higher level languages?</p>
+
+  <p>Imagine we’re building a web application that needs data from a webserver. The conventional communication format is JavaScript Object Notation (JSON). Let’s say we’re sending an array of 8 random integers ranging from 0 to 255:</p>
+
+  <pre class="code"><code>[
+  10,
+  240,
+  106,
+  236,
+  244,
+  226,
+  139,
+  30
+]</code></pre>
+
+  <p>Because the data is sent as a string with a specific format, we’ll need 8 bits per character, assuming it’s UTF-8 encoded. Ignoring whitespace, above JSON string is 31 characters, making it 248 bits.</p>
+
+  <p>We can send the exact same data in binary, but way more efficient. Instead of returning a formatted string, because that’s what JSON is, we can send the data as one binary blob. For numbers ranging from 0 to 255, we still need 8 bits to represent each. Because each number has a fixed bit length, we can just concatinate them. The complete blob will be 64 bits long, saving just under 75% of data!</p>
+
+  <pre class="code"><code>00001010 <span class="code__comment">// 10</span>
+11110000 <span class="code__comment">// 240</span>
+01101010 <span class="code__comment">// 106</span>
+11101100 <span class="code__comment">// 236</span>
+11110100 <span class="code__comment">// 244</span>
+11100010 <span class="code__comment">// 226</span>
+10001011 <span class="code__comment">// 139</span>
+00011110 <span class="code__comment">// 30</span></code></pre>
+
+  <p>The strength of JSON isn’t size, but flexibility. Because it’s a formatted string, it’s length and contents is irrelevant. The strength of binary is it’s size. It all depends on your use-case, but a 75% reduction of bandwidth is worth considering.</p>
+</div>
+
+		<div id="operators" class="section content">
+	<h2>Operators</h2>
+
+	<p>Bitwise operators are operators that allow you to modify data on bit-level. Welcome to <a href="https://en.wikipedia.org/wiki/Boolean_algebra" rel="nofollow">Boolean algebra</a>.</p>
+
+	<h4 id="operator-not">NOT</h4>
+	<p>Flipping, or negating bits can be done using the <strong>NOT (~)</strong> operator. The operator toggles all the bits.</p>
+	<pre class="code"><code>~0b01 = 10
+~0b11 = 00</code></pre>
+
+	<h4 id="operator-and">AND</h4>
+	<p>The <strong>AND (&amp;)</strong> operator returns <code>1</code> for each bit only if the corresponding bits of
+		both operands are <code>1</code>&rsquo;s.</p>
+	<pre class="code"><code>0b01 &amp; 0b11 = 01
+0b01 &amp; 0b00 = 00</code></pre>
+
+	<h4 id="operator-or">OR</h4>
+	<p>The <strong>OR (|)</strong> operator returns <code>1</code>&rsquo;s if a bit of either of the operands is
+		<code>1</code>.</p>
+	<pre class="code"><code>0b10 | 0b01 = 11
+0b00 | 0b00 = 00
+0b11 | 0b10 = 11</code></pre>
+
+	<h4 id="operator-xor">XOR</h4>
+	<p>Similar to the <strong>OR</strong> operator, the <strong>XOR (^)</strong>, exclusive OR, operator only returns <code>1</code>&rsquo;s if
+		either of the corresponding bits of the operands is <code>1</code>, but <code>0</code> if both are.</p>
+	<pre class="code"><code>0b10 ^ 0b01 = 11
+0b00 ^ 0b00 = 00
+0b11 ^ 0b10 = 01</code></pre>
+
+	<p>It could be considered a shorthand of the following:</p>
+	<pre class="code"><code>a = 0b11
+b = 0b10
+(a | b) &amp; ~(a &amp; b) = 01</code></pre>
+
+	<h4 id="operator-shift">Shift</h4>
+	<p>Bit shifting is the act of shifting a set of bits to the left or the right.</p>
+
+	<p>To shift bits to the left, use <code>&lt;&lt;</code>. Additional bits, <code>0</code>’s, will be added on the right-hand side.</p>
+	<pre class="code"><code>0b1001 &lt;&lt; 2 = 1001<span class="code__added">00</span></code></pre>
+
+	<p>To shift bits the other way, use <code>&gt;&gt;</code>. <strong>This will discard the right-hand bits.</strong></p>
+	<pre class="code"><code>0b1001 &gt;&gt; 2 = 10<span class="code__removed">01</span></code></pre>
+
+	<p>When shifting bits to the right, notice the amount of bits decreases? A zero-fill right shift (<code>&gt;&gt;&gt;</code>)
+		also adds bits on the left-hand side, so the amount of bits is unchanged.</p>
+	<pre class="code"><code>0b1001 &gt;&gt;&gt; 2 = <span class="code__added">00</span>10<span class="code__removed">01</span></code></pre>
+</div>
+
+		<div id="practical" class="section content">
+	<h2>Practical</h2>
+
+	<h4 id="practical-get">Read a bit at a specific position</h4>
+	<p>First, a set of bits must be shifted to the right until the bit of interest is all the way on the right. To discard all other bits,
+		we can use the <strong>AND</strong> operator with a so called <strong>bitmask</strong>.</p>
+	<pre class="code"><code>bitmask = 0b1
+
+<span class="code__comment">// the highlighted bits are moved all the way to the right, then all other bits are cancelled out with the bitmask</span>
+(0b1<span class="code__interest">1</span>01 &gt;&gt; 2) &amp; bitmask = <span class="code__interest">1</span>
+(0b11<span class="code__interest">0</span>1 &gt;&gt; 1) &amp; bitmask = <span class="code__interest">0</span></code></pre>
+
+	<p>The bitmask detmines how much of the info is returned, so to get two bits, a two-bit bitmask is required.</p>
+
+	<pre class="code"><code>bitmask = 0b11
+(0b<span class="code__interest">11</span>01) &gt;&gt; 2) &amp; bitmask = <span class="code__interest">11</span></code></pre>
+
+	<h4 id="practical-set">Set a bit</h4>
+	<p>To set a specific bit to <code>1</code>, you can use the <strong>OR</strong> operator. First, the bit you wish to set is shifted to the position you wish to set it to, the <strong>OR</strong> operator does the rest.</p>
+	<pre class="code"><code>byte = 0b0000
+byte | (0b1 &lt;&lt; 2) = 0<span class="code__interest">1</span>00</code></pre>
+
+	<p>To set a specific bit to <code>0</code>, you must use the <strong>AND</strong> operator.</p>
+	<pre class="code"><code>byte = 0b1111
+byte &amp; (0b0 &lt;&lt; 2) = 1<span class="code__interest">0</span>11</code></pre>
+
+	<p>If the new bit has a dynamic value, the following allows you to change a bit to any
+		value at a given position.</p>
+
+	<pre class="code"><code>x = 1 <span class="code__comment">// new value of bit...</span>
+n = 2 <span class="code__comment">// at this location</span>
+byte = 0b0010
+
+byte ^ (-x ^ byte) &amp; (1 &lt;&lt; n) = 0<span class="code__interest">1</span>10</code></pre>
+
+	<h4 id="practical-toggle">Toggle a bit at a specific position</h4>
+	<p>The <strong>XOR</strong> operator returns <code>1</code> if operands are <em>unequal</em>. By having one operand set to
+		<code>1</code>, it toggles.</p>
+
+	<pre class="code"><code>n = 2 <span class="code__comment">// at this location</span>
+byte = 0b0100
+byte ^ (0b1 &lt;&lt; n) = 0<span class="code__interest">0</span>00</code></pre>
+
+	<h4 id="practical-store-flags">Store flags</h4>
+	<p>Flags, a fancy name for &ldquo;options,&rdquo; can easily be stored in a byte. This example is inspired by the <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol">TCP protocol</a>.</p>
+
+	<pre class="code"><code>FLAG_FIN    = 0b000001
+FLAG_SYN    = 0b000010
+FLAG_RESET  = 0b000100
+FLAG_PUSH   = 0b001000
+FLAG_ACK    = 0b010000
+FLAG_URGENT = 0b100000
+
+<span class="code__comment">// Set header to SYN, ACK and URGENT (110010)</span>
+header = FLAG_SYN | FLAG_ACK | FLAG_URGENT
+
+<span class="code__comment">// Turn off URGENT flag</span>
+header = header &amp; ~FLAG_URGENT</code></pre>
+
+<h4 id="practical-hex-to-rgb">Hex to RGB</h4>
+<p>Colours are often stored as hexadecimals. Sometimes, you will want to get the value of each channel. Note that hexadecimals are just another representation of <code>uint</code>s.</p>
+
+<pre class="code"><code><span class="code__comment">// mask = 11111111</span>
+mask = 0xFF
+
+<span class="code__comment">// rgb = 11100110 01000010 00011001</span>
+rgb = 0xE64219
+
+<span class="code__comment">// to get the red component,
+// shift 16 bits to the right
+// and get the first 8 bits
+// <span class="code__interest">11100110</span> <span class="code__removed">01000010 00011001</span></span>
+(rgb &gt;&gt; 16) &amp; mask = 0xE6 <span class="code__comment">// = 11100110</span>
+
+<span class="code__comment">// to get green,
+// shift 8 bits to the right,
+// and only get the first 8 bits
+// <span class="code__removed">11100110</span> <span class="code__interest">01000010</span> <span class="code__removed">00011001</span></span>
+(rgb &gt;&gt; 8) &amp; mask = 0x42 <span class="code__comment">// = 01000010</span>
+
+<span class="code__comment">// blue is the first 8 bits
+// <span class="code__removed">11100110 01000010</span> <span class="code__interest">00011001</span></span>
+rgb &amp; mask = 0x19</code></pre>
+
+	<h4 id="practical-rgb-to-hex">RGB to hex</h4>
+	<p>You can do the opposite as well; convert RGB to hexadecimals.</p>
+
+	<pre class="code"><code>r = 0xE6 <span class="code__comment">// 11100110</span>
+g = 0x42 <span class="code__comment">// 11100110</span>
+b = 0x19 <span class="code__comment">// 00011001</span>
+
+<span class="code__comment">// 11100110 01000010 00011001</span>
+(r &lt;&lt; 16) | (g &lt;&lt; 8) | b = 0xE64219</code></pre>
+</div>
+
+		<div id="notes" class="section content">
+	<h2>Notes</h2>
+
+	<p>The above code is pseudo-code, and may not work in all languages. Other than the basics&mdash;like data-types and equations&mdash;there
+		are few things to consider in particular to make this work in your language.</p>
+
+	<h4 id="note-declare-binary-literals">Declare binary literals</h4>
+	<p>Although many languages seem to support binary literals by prefixing them with <code>0b</code>, some do not.</p>
+
+	<pre class="code"><code>JavaScript = parseInt('0010', 2) <span class="code__comment">// pre-ES6</span>
+PHP        = bindec('0010')      <span class="code__comment">// pre-5.4</span>
+Scala      = Integer.parseInt("0010", 2)</code></pre>
+
+	<p>For more information, please refer to the documentation of your preferred language.</p>
+
+	<h4 id="note-bitwise-operators">Bitwise operators</h4>
+	<p>Some programming languages use different bitwise operators than used in this document. Please advice the documentation
+		of your language in question.</p>
+</div>
+
+	</main>
+
+	<footer class="section section--highlighted section--last">
+		<div class="container">
+			<p>Made with <strong>&hearts;</strong>, by <span class="indenial">amnesic</span> <a href="https://twitter.com/timseverien" rel="nofollow noopener">Tim Severien</a>.</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>
