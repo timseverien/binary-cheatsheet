@@ -5,20 +5,20 @@
     "start": "npm run build -- watch"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
+    "autoprefixer": "^7.1.2",
     "breakpoint-sass": "^2.7.1",
     "browser-sync": "^2.18.8",
     "cssnano": "^3.10.0",
-    "del": "^2.2.2",
+    "del": "^3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-imagemin": "^3.2.0",
-    "gulp-postcss": "^6.4.0",
-    "gulp-replace": "^0.5.4",
+    "gulp-postcss": "^7.0.0",
+    "gulp-replace": "^0.6.1",
     "gulp-sass": "^3.1.0",
     "imagemin-jpegtran": "^5.0.2",
     "node-sass-globbing": "0.0.23"
   },
   "dependencies": {
-    "normalize-scss": "^6.0.0"
+    "normalize-scss": "^7.0.0"
   }
 }
