@@ -2,7 +2,7 @@
   "name": "bit-cheatsheet",
   "scripts": {
     "build": "gulp",
-    "watch": "npm run build -- watch"
+    "start": "npm run build -- watch"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
