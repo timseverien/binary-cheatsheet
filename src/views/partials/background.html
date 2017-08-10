@@ -15,7 +15,9 @@
 
 	<p>Many typed programming languages have datatypes like integers, floats, strings, etc. These datatypes tell the computer how to interpret binary data. Instead of modifying bits and bytes to add two integers, we can use arithmetic operators, like a plus (+), and the computer will know what to do at binary level. Dynamically typed languages do the same, but also removes the need to tell which variable has which type.</p>
 
-	<p>Let’s have look at the representation of an 8-bit unsigned integer (<code>uint</code>). A <code>uint</code> is a positive integer starting from 0. Incrementing is very similar to our decimal system:</p>
+	<p>A common datatype is an unsigned integer (<code>uint</code>). When an integer is signed, the first bit will be used to store whether the integer is a positive or negative integer. When it’s unsigned, the data type can only store positive integers. So a <code>uint</code> is an integer that must be equal or greater than 0.</p>
+
+	<p>Let’s have look at the binary representation of such an integer, in 8 bits. A <code>uint</code> is a positive integer starting from 0. Incrementing is very similar to our decimal system:</p>
 
 	<ol>
 		<li>Increment the least significant number</li>
