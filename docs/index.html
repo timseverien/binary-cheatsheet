@@ -82,6 +82,7 @@
 
       <ul>
         <li><a href="#note-declare-binary-literals">Declare binary literals</a></li>
+        <li><a href="#note-converting-binary-to-string">Converting Binary to a String</a></li>
         <li><a href="#note-bitwise-operators">Bitwise operators</a></li>
       </ul>
     </li>
@@ -325,6 +326,15 @@ b = 0x19 <span class="code__comment">// 00011001</span>
 	<pre class="code"><code>JavaScript = parseInt('0010', 2) <span class="code__comment">// pre-ES6</span>
 PHP        = bindec('0010')      <span class="code__comment">// pre-5.4</span>
 Scala      = Integer.parseInt("0010", 2)</code></pre>
+
+	<p>For more information, please refer to the documentation of your preferred language.</p>
+
+	<h4 id="note-converting-binary-to-string">Converting Binary to a String</h4>
+	<p>Displaying binary data as a string can help debug binary values.</p>
+
+	<pre class="code"><code>JavaScript = (0b1011).toString(2)
+PHP        = decbin(0b1011)
+Ruby       = "%b" % 0b1011</code></pre>
 
 	<p>For more information, please refer to the documentation of your preferred language.</p>
 
