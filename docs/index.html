@@ -212,10 +212,14 @@ b = 0b10
 	<pre class="code"><code>0b1001 &lt;&lt; 2 = 1001<span class="code__added">00</span></code></pre>
 
 	<p>To shift bits the other way, use <code>&gt;&gt;</code>. <strong>This will discard the right-hand bits.</strong></p>
+	<p><small>Note that this operation retains the first bit for signed integers. This means that negative integers stay negative.</small></p>
+
 	<pre class="code"><code>0b1001 &gt;&gt; 2 = 10<span class="code__removed">01</span></code></pre>
 
 	<p>When shifting bits to the right, notice the amount of bits decreases? A zero-fill right shift (<code>&gt;&gt;&gt;</code>)
 		also adds bits on the left-hand side, so the amount of bits is unchanged.</p>
+	<p><small>Unlike a regular right shift, the zero-fill right shift also moves the sign bit in a signed integer, which is often undesired.</code></small></p>
+
 	<pre class="code"><code>0b1001 &gt;&gt;&gt; 2 = <span class="code__added">00</span>10<span class="code__removed">01</span></code></pre>
 </div>
 
