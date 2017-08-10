@@ -21,4 +21,8 @@ a {
 		color: $link-color--active;
 		background-image: linear-gradient(0deg, $link-color--active, $link-color--active);
 	}
+
+	small & {
+		background-size: 100% (1em / 8);
+	}
 }
