@@ -1,0 +1,56 @@
+---
+import Flow from '../components/Flow.astro';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	tableOfContents: {
+		title: string;
+		url: string;
+		children?: {
+			title: string;
+			url: string;
+		}[];
+	}[];
+}
+
+const { title, description, tableOfContents } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+	<div class="sticky">
+		<h2>Table of contents</h2>
+
+		<ul>
+			{
+				tableOfContents.map((p) => (
+					<li>
+						<a href={p.url}>{p.title}</a>
+
+						{p.children && (
+							<ul>
+								{p.children.map((p) => (
+									<li>
+										<a href={p.url}>{p.title}</a>
+									</li>
+								))}
+							</ul>
+						)}
+					</li>
+				))
+			}
+		</ul>
+	</div>
+
+	<Flow>
+		<slot />
+	</Flow>
+</BaseLayout>
+
+<style>
+	.sidebar {
+		position: sticky;
+		top: 1em;
+	}
+</style>

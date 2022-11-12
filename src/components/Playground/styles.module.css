@@ -1,0 +1,36 @@
+.playground {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1em;
+}
+
+.playgroundInputContainer {
+	display: flex;
+	flex-direction: column;
+	grid-row: 1 / span 3;
+}
+
+.playgroundInput {
+	display: block;
+	flex: 1 0 auto;
+	width: 100%;
+	padding: 0.5em;
+	border: 0.125em solid #ccc;
+	border-radius: 0.25em;
+	margin: 0;
+	background-color: transparent;
+	resize: none;
+}
+
+.playgroundOutput {
+	display: block;
+	height: auto;
+	min-height: 7.5em;
+	padding: 0.5em;
+	border: 0.125em solid #ccc;
+	border-radius: 0.25em;
+	margin: 0;
+	background-color: transparent;
+	white-space: normal;
+	word-break: break-all;
+}

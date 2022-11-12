@@ -1,0 +1,83 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+
+const PAGE_TITLE = 'The Binary Cheatsheet';
+const PAGE_DESCRIPTION = 'A cheatsheet for bits and bytes';
+
+const tableOfContents = [
+	{
+		url: '#background',
+		title: 'Background',
+		children: [
+			{
+				url: '#representation',
+				title: 'Representation',
+			},
+		],
+	},
+];
+---
+
+<ContentLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION} tableOfContents={tableOfContents}>
+	<h2 id="background">Background</h2>
+	<p>
+		Looking at your computer screen, what do you see? Text, colours, images, videos and much more.
+		Everything you see, everything you store on your computer, every button you press is a stream of
+		ones and zeros. Why? How does it work?
+	</p>
+
+	<p>
+		Computers parts are able to store data via tiny electronic components called <a
+			href="https://en.wikipedia.org/wiki/Flip-flop_(electronics)">flip-flops</a
+		>. They can be set to either of two states: “one” or “zero.” These components can store a single
+		value we call a bit.
+	</p>
+
+	<p>
+		To store other values than ones and zeroes, a series of bits can be grouped. If one bit can have
+		two different states, a group of two bits can have four. A group of four bits can have up to
+		sixteen unique states. The amount of different states grows exponentially for every bit that is
+		added to a group. <code>s = n<sup>2</sup></code>, where s is the number of states, and n the
+		number of bits within the group.
+	</p>
+
+	<p>
+		The de-facto standard is to call a group of bits a byte, and one byte contains 8 bits. The more
+		explicit term for an 8-bit group is octet.
+	</p>
+
+	<p>
+		Binary is the purest representation of data on computers, but it isn’t easy to understand what
+		the data represents. How do we get from binary to other values?
+	</p>
+
+	<h3 id="representation">Representation</h3>
+
+	<p>
+		Many typed programming languages have datatypes like integers, floats, strings, etc. These
+		datatypes tell the computer how to interpret binary data. Instead of modifying bits and bytes to
+		add two integers, we can use arithmetic operators, like a plus (+), and the computer will know
+		what to do at binary level. Dynamically typed languages do the same, but also removes the need
+		to tell which variable has which type.
+	</p>
+
+	<p>
+		A common datatype is an unsigned integer (uint). When an integer is signed, the first bit will
+		be used to store whether the integer is a positive or negative integer. When it’s unsigned, the
+		data type can only store positive integers. So a uint is an integer that must be equal or
+		greater than 0.
+	</p>
+
+	<p>
+		Let’s have look at the binary representation of such an integer, in 8 bits. A uint is a positive
+		integer starting from 0. Incrementing is very similar to our decimal system:
+	</p>
+
+	<ol>
+		<li>Increment the least significant number</li>
+		<li>
+			If least significant number exceeds maximum value, reset and increment the number one place
+			left
+		</li>
+	</ol>
+</ContentLayout>

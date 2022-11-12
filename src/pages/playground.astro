@@ -1,0 +1,25 @@
+---
+import Flow from '../components/Flow.astro';
+import { Playground } from '../components/Playground';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const PAGE_TITLE = 'Playground - The Binary Cheatsheet';
+const PAGE_DESCRIPTION = 'Convert binary to hexadecimal and text';
+---
+
+<BaseLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
+	<div class="playground">
+		<Flow>
+			<h1>Playground</h1>
+			<div>
+				<Playground client:load />
+			</div>
+		</Flow>
+	</div>
+</BaseLayout>
+
+<style>
+	.playground {
+		padding: 1em;
+	}
+</style>

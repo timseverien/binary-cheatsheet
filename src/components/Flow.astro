@@ -1,0 +1,9 @@
+<div class="flow">
+	<slot />
+</div>
+
+<style is:global>
+	.flow > * + * {
+		margin-block-start: var(--flow-space, 1em);
+	}
+</style>
