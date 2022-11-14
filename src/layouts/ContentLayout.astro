@@ -19,36 +19,48 @@ const { title, description, tableOfContents } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-	<div class="sticky">
-		<h2>Table of contents</h2>
+	<div class="layout">
+		<div>
+			<div class="sidebar">
+				<h2>Table of contents</h2>
 
-		<ul>
-			{
-				tableOfContents.map((p) => (
-					<li>
-						<a href={p.url}>{p.title}</a>
+				<ul>
+					{
+						tableOfContents.map((p) => (
+							<li>
+								<a href={p.url}>{p.title}</a>
 
-						{p.children && (
-							<ul>
-								{p.children.map((p) => (
-									<li>
-										<a href={p.url}>{p.title}</a>
-									</li>
-								))}
-							</ul>
-						)}
-					</li>
-				))
-			}
-		</ul>
+								{p.children && (
+									<ul>
+										{p.children.map((p) => (
+											<li>
+												<a href={p.url}>{p.title}</a>
+											</li>
+										))}
+									</ul>
+								)}
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
+
+		<Flow>
+			<slot />
+		</Flow>
 	</div>
-
-	<Flow>
-		<slot />
-	</Flow>
 </BaseLayout>
 
 <style>
+	.layout {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 1em;
+		max-width: 90ch;
+		margin-inline: auto;
+	}
+
 	.sidebar {
 		position: sticky;
 		top: 1em;

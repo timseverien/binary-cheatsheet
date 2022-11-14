@@ -10,6 +10,11 @@
 	grid-row: 1 / span 3;
 }
 
+.playgroundEmbedInputContainer {
+	display: flex;
+	flex-direction: column;
+}
+
 .playgroundInput {
 	display: block;
 	flex: 1 0 auto;
@@ -20,6 +25,43 @@
 	margin: 0;
 	background-color: transparent;
 	resize: none;
+	font-family: monospace, monospace;
+}
+
+.playgroundInputDetail {
+	display: block;
+}
+
+.playgroundOperator {
+	display: grid;
+	grid-template-columns: 1fr min-content min-content min-content 1fr;
+	gap: 0.5em;
+	align-items: center;
+	padding: 1em;
+
+	background-color: #222;
+	border-radius: 0.25em;
+
+	color: #fff;
+	font-family: monospace, monospace;
+}
+.playgroundOperatorBinary {
+	text-align: end;
+}
+.playgroundOperatorInput {
+	background-color: transparent;
+	border: 1px solid #444;
+	color: #fff;
+	font-family: inherit;
+}
+.playgroundOperatorInput > option {
+	color: #000;
+}
+.playgroundOperatorOutput {
+	background-color: transparent;
+	border: 1px solid #444;
+	color: #fff;
+	font-family: inherit;
 }
 
 .playgroundOutput {
@@ -33,4 +75,15 @@
 	background-color: transparent;
 	white-space: normal;
 	word-break: break-all;
+}
+
+.inputBinary {
+	font-family: monospace, monospace;
+}
+
+.playgroundOperatorResetButton {
+	font-size: var(--step--1);
+}
+.playgroundOperatorResetButton:hover {
+	text-decoration: underlined;
 }

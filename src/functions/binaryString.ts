@@ -20,12 +20,29 @@ export function getBinaryStringFromArrayBuffer(value: ArrayBuffer) {
 	return bytes.reduce((value, byte) => value + byte.toString(2), '') as BinaryString;
 }
 
-export function getSanitizedBinaryString(value: BinaryString) {
-	return value.replace(/[^01]/g, '') as BinaryString;
-}
-
-function getBytePaddedBinaryString(value: BinaryString) {
+export function getBytePaddedBinaryString(value: BinaryString) {
 	const targetLength = SYMBOLS_PER_BYTE * Math.ceil(value.length / SYMBOLS_PER_BYTE);
 
 	return value.padStart(targetLength, '0') as BinaryString;
+}
+
+export function getFormattedBinaryString(value: BinaryString) {
+	const v = getSanitizedBinaryString(value);
+
+	if (v.length <= 8) {
+		return v;
+	}
+
+	let r = '';
+
+	for (const [i, c] of [...v].entries()) {
+		r += c;
+		if (i > 0 && i % 8 === 0) r += ' ';
+	}
+
+	return r as BinaryString;
+}
+
+export function getSanitizedBinaryString(value: BinaryString) {
+	return value.replace(/[^01]/g, '') as BinaryString;
 }

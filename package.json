@@ -10,7 +10,9 @@
   "dependencies": {
     "@astrojs/preact": "^1.2.0",
     "astro": "^1.6.7",
+    "imask": "^6.4.3",
     "modern-css-reset": "^1.4.0",
-    "preact": "^10.11.2"
+    "preact": "^10.11.2",
+    "react-imask": "^6.4.3"
   }
 }

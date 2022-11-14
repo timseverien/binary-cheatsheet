@@ -1,6 +1,22 @@
+/* @link https://utopia.fyi/type/calculator?c=320,18,1.618,1140,24,1.618,4,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
+:root {
+	--step--2: clamp(0.43rem, calc(0.37rem + 0.28vw), 0.57rem);
+	--step--1: clamp(0.7rem, calc(0.6rem + 0.45vw), 0.93rem);
+	--step-0: clamp(1.13rem, calc(0.98rem + 0.73vw), 1.5rem);
+	--step-1: clamp(1.82rem, calc(1.58rem + 1.18vw), 2.43rem);
+	--step-2: clamp(2.95rem, calc(2.56rem + 1.92vw), 3.93rem);
+	--step-3: clamp(4.76rem, calc(4.14rem + 3.1vw), 6.35rem);
+	--step-4: clamp(7.71rem, calc(6.71rem + 5.01vw), 10.28rem);
+}
+
 :root {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
 		'Apple Color Emoji', 'Segoe UI Emoji';
+	font-size: var(--step-0);
+}
+
+small {
+	font-size: var(--step--1);
 }
 
 code,
@@ -8,5 +24,24 @@ pre {
 	font-family: monospace, monospace;
 }
 
-h1 {
+input,
+select {
+	height: 2.5em;
+	padding-block: 0.25em;
+	padding-inline: 0.5em;
+	border: 0.125em solid #ccc;
+	margin: 0;
+
+	border-radius: 0.25em;
+
+	font-size: inherit;
+	line-height: 1;
+}
+
+pre {
+	border: 0.125em solid #ccc;
+	border-radius: 0.25em;
+	padding: 0.5em;
+	margin: 0;
+	font-size: inherit;
 }

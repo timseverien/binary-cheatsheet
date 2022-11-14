@@ -1,4 +1,7 @@
 ---
+import { OutputType, PlaygroundEmbed } from '../components/Playground';
+import { PlaygroundBitwiseShiftOperator } from '../components/Playground/Embed';
+import { BinaryString } from '../functions/binaryString';
 import ContentLayout from '../layouts/ContentLayout.astro';
 
 const PAGE_TITLE = 'The Binary Cheatsheet';
@@ -80,4 +83,85 @@ const tableOfContents = [
 			left
 		</li>
 	</ol>
+
+	<!-- TODO: copy from old site -->
+
+	<h2 id="operators">Operators</h2>
+
+	<p>
+		Operators Bitwise operators are operators that allow you to modify data on bit-level. Welcome to <a
+			href="https://en.wikipedia.org/wiki/Boolean_algebra">Boolean algebra</a
+		>.
+	</p>
+
+	<small
+		>In the following examples, we will define binary data using “binary literals.” This means they
+		are prefixed with 0b, which is common in many programming languages. For more information, see
+		<a href="https://timseverien.github.io/binary-cheatsheet/#notes">notes</a>.</small
+	>
+
+	<h3 id="operators-not">NOT</h3>
+	<p>
+		Flipping, or negating bits can be done using the <b>NOT (~)</b> operator. The operator toggles all
+		the bits.
+	</p>
+
+	<!-- TODO create demos and copy content from old site -->
+
+	<h3 id="operators-shift">Shift</h3>
+	<p>Bit shifting is the act of shifting a set of bits to the left or the right.</p>
+
+	<p>
+		To shift bits to the left, use <code>&lt;&lt;</code>. Additional bits, 0s, will be added on the
+		right-hand side.
+	</p>
+
+	<div>
+		<PlaygroundBitwiseShiftOperator
+			initialBinaryValue="1001"
+			initialOperator="<<"
+			initialShiftValue={2}
+			client:idle
+		/>
+	</div>
+
+	<p>
+		To shift bits the other way, use <code>&gt;&gt;</code>. <b
+			>This will discard the right-hand bits.</b
+		>
+	</p>
+
+	<small
+		>Note that this operation retains the first bit for signed integers. This means that negative
+		integers stay negative.</small
+	>
+
+	<div>
+		<PlaygroundBitwiseShiftOperator
+			initialBinaryValue="1001"
+			initialOperator=">>"
+			initialShiftValue={2}
+			client:idle
+		/>
+	</div>
+
+	<p>
+		When shifting bits to the right, notice the amount of bits decreases? A zero-fill right shift (<code
+			>&gt;&gt;&gt;</code
+		>) also adds bits on the left-hand side, so the amount of bits is unchanged.
+	</p>
+
+	<small
+		>Unlike a regular right shift, the zero-fill right shift also moves the sign bit in a signed
+		integer, which is often undesired.</small
+	>
+
+	<div>
+		<PlaygroundBitwiseShiftOperator
+			initialBinaryValue="1001"
+			initialOperator=">>>"
+			initialShiftValue={2}
+			client:idle
+		/>
+	</div>
 </ContentLayout>
