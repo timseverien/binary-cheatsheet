@@ -51,7 +51,8 @@
 
 .operatorOutput {
 	background-color: transparent;
-	border: 1px solid #444;
+	border: 0;
+	padding-inline: 0;
 	color: #fff;
 	font-family: inherit;
 }
@@ -70,4 +71,45 @@
 
 .practicalVariable {
 	display: inline-block;
+	vertical-align: top;
+	text-align: end;
+}
+.practicalVariable:first-child {
+	text-align: start;
+}
+.practicalVariableName {
+	color: #aaa;
+	font-size: var(--step--1);
+}
+
+.practicalReadBit {
+	display: grid;
+	grid-template-columns: repeat(8, min-content) 1fr;
+	gap: 0.5em;
+	align-items: end;
+}
+.practicalReadBit > span {
+	line-height: 2.5em;
+}
+
+.practicalSetBitOne,
+.practicalSetBitZero {
+	display: grid;
+	grid-template-columns: repeat(6, min-content) 1fr;
+	gap: 0.5em;
+	align-items: end;
+}
+.practicalSetBitOne > span,
+.practicalSetBitZero > span {
+	line-height: 2.5em;
+}
+
+.practicalSetBit {
+	display: grid;
+	grid-template-columns: repeat(9, min-content) 1fr;
+	gap: 0.5em;
+	align-items: end;
+}
+.practicalSetBit > span {
+	line-height: 2.5em;
 }

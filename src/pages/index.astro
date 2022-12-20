@@ -5,7 +5,12 @@ import {
 	DemoBitwiseShiftOperator,
 	DemoBitwiseUnaryOperator,
 } from '../components/Demo';
-import { PracticalReadBit } from '../components/Demo/Practical';
+import {
+	PracticalReadBit,
+	PracticalSetBit,
+	PracticalSetBitOne,
+	PracticalSetBitZero,
+} from '../components/Demo/Practical';
 import {
 	Not,
 	And,
@@ -129,7 +134,7 @@ const tableOfContents: TableOfContents = [
 		initialLeftBinaryValue={'1010' as BinaryString}
 		initialRightBinaryValue={'1001' as BinaryString}
 		initialOperator="&"
-		client:idle
+		client:load
 	/>
 
 	<h3 id="operators-or"><Or /></h3>
@@ -139,7 +144,7 @@ const tableOfContents: TableOfContents = [
 		initialLeftBinaryValue={'1010' as BinaryString}
 		initialRightBinaryValue={'1001' as BinaryString}
 		initialOperator="|"
-		client:idle
+		client:load
 	/>
 
 	<h3 id="operators-xor"><Xor /></h3>
@@ -152,7 +157,7 @@ const tableOfContents: TableOfContents = [
 		initialLeftBinaryValue={'1010' as BinaryString}
 		initialRightBinaryValue={'1001' as BinaryString}
 		initialOperator="^"
-		client:idle
+		client:load
 	/>
 
 	<h3 id="operators-shift-left"><ShiftLeft /></h3>
@@ -166,7 +171,7 @@ const tableOfContents: TableOfContents = [
 			initialBinaryValue={'1001' as BinaryString}
 			initialOperator="<<"
 			initialShiftValue={2}
-			client:idle
+			client:load
 		/>
 	</div>
 
@@ -182,7 +187,7 @@ const tableOfContents: TableOfContents = [
 			initialBinaryValue={'1001' as BinaryString}
 			initialOperator=">>"
 			initialShiftValue={2}
-			client:idle
+			client:load
 		/>
 	</div>
 
@@ -201,7 +206,7 @@ const tableOfContents: TableOfContents = [
 			initialBinaryValue={'1001' as BinaryString}
 			initialOperator=">>>"
 			initialShiftValue={2}
-			client:idle
+			client:load
 		/>
 	</div>
 
@@ -218,28 +223,40 @@ const tableOfContents: TableOfContents = [
 		initialBitmask={'1' as BinaryString}
 		initialShift={2}
 		initialValue={'1101' as BinaryString}
+		client:load
 	/>
 
-	<!-- DEMO -->
 	<p>
 		The bitmask determines how much of the info is returned, so to get two bits, a two-bit bitmask
 		is required.
 	</p>
-	<!-- DEMO -->
+	<PracticalReadBit
+		initialBitmask={'11' as BinaryString}
+		initialShift={2}
+		initialValue={'1101' as BinaryString}
+		client:load
+	/>
 
 	<h3 id="practical-set">Set a bit</h3>
 	<p>
 		To set a specific bit to 1, you can use the <b><Or /></b> operator. First, the bit you wish to set
 		is shifted to the position you wish to set it to, the <b><Or /></b> operator does the rest.
 	</p>
-	<!-- DEMO -->
+	<PracticalSetBitOne initialShift={2} initialValue={'1001' as BinaryString} client:load />
+
 	<p>To set a specific bit to 0, you must use the <b><And /></b> operator.</p>
-	<!-- DEMO -->
+	<PracticalSetBitZero initialShift={2} initialValue={'1110' as BinaryString} client:load />
+
 	<p>
 		If the new bit has a dynamic value, the following allows you to change a bit to any value at a
 		given position.
 	</p>
-	<!-- DEMO -->
+	<PracticalSetBit
+		initialBit={1}
+		initialShift={2}
+		initialValue={'1001' as BinaryString}
+		client:load
+	/>
 
 	<h3 id="practical-toggle">Toggle a bit at a specific position</h3>
 	<p>
