@@ -8,3 +8,6 @@
 
 	color: inherit;
 }
+.buttonText[disabled] {
+	opacity: 0.25;
+}

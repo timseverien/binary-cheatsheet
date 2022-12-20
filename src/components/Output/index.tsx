@@ -30,4 +30,4 @@ export const IntegerOutput = ({ value }: { value: BinaryString }) => {
 	return <Output value={integerString} />;
 };
 
-const Output = ({ value }: { value: string }) => <pre class={styles.playgroundOutput}>{value}</pre>;
+const Output = ({ value }: { value: string }) => <pre class={styles.output}>{value}</pre>;

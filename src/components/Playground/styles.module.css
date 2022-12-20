@@ -33,10 +33,6 @@
 }
 
 .playgroundOperator {
-	display: grid;
-	grid-template-columns: 1fr min-content min-content min-content 1fr;
-	gap: 0.5em;
-	align-items: center;
 	padding: 1em;
 
 	background-color: #222;
@@ -45,14 +41,43 @@
 	color: #fff;
 	font-family: monospace, monospace;
 }
+
+.playgroundOperatorBitwiseBinary {
+	display: grid;
+	grid-template-columns: 1fr min-content 1fr min-content 1fr;
+	gap: 0.5em;
+	align-items: center;
+}
+
+.playgroundOperatorBitwiseShift {
+	display: grid;
+	grid-template-columns: 1fr min-content min-content min-content 1fr;
+	gap: 0.5em;
+	align-items: center;
+}
+
+.playgroundOperatorBitwiseUnary {
+	display: grid;
+	grid-template-columns: min-content 1fr min-content 1fr;
+	gap: 0.5em;
+	align-items: center;
+}
+
 .playgroundOperatorBinary {
 	text-align: end;
 }
+
 .playgroundOperatorInput {
 	background-color: transparent;
 	border: 1px solid #444;
 	color: #fff;
 	font-family: inherit;
+}
+.playgroundOperatorInput[disabled],
+.playgroundOperatorInput[readonly] {
+	padding-inline: 0;
+	border: 0;
+	text-align: center;
 }
 .playgroundOperatorInput > option {
 	color: #000;

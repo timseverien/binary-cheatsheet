@@ -1,0 +1,140 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+
+const PAGE_TITLE = 'Background - The Binary Cheatsheet';
+const PAGE_DESCRIPTION = 'A cheatsheet for bits and bytes';
+
+const tableOfContents = [
+	{
+		url: '#background',
+		title: 'Background',
+		children: [
+			{
+				url: '#background-representation',
+				title: 'Representation',
+			},
+			{
+				url: '#background-why-use-binary',
+				title: 'Why use binary',
+			},
+		],
+	},
+];
+---
+
+<ContentLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION} tableOfContents={tableOfContents}>
+	<h1 id="background">Background</h1>
+	<p>
+		Looking at your computer screen, what do you see? Text, colours, images, videos and much more.
+		Everything you see, everything you store on your computer, every button you press is a stream of
+		ones and zeros. Why? How does it work?
+	</p>
+
+	<p>
+		Computers parts are able to store data via tiny electronic components called <a
+			href="https://en.wikipedia.org/wiki/Flip-flop_(electronics)"
+			target="_blank">flip-flops</a
+		>. They can be set to either of two states: “one” or “zero.” These components can store a single
+		value we call a bit.
+	</p>
+
+	<p>
+		To store other values than ones and zeroes, a series of bits can be grouped. If one bit can have
+		two different states, a group of two bits can have four. A group of four bits can have up to
+		sixteen unique states. The amount of different states grows exponentially for every bit that is
+		added to a group. <code>s = n<sup>2</sup></code>, where s is the number of states, and n the
+		number of bits within the group.
+	</p>
+
+	<p>
+		The de-facto standard is to call a group of bits a byte, and one byte contains 8 bits. The more
+		explicit term for an 8-bit group is octet.
+	</p>
+
+	<p>
+		Binary is the purest representation of data on computers, but it isn’t easy to understand what
+		the data represents. How do we get from binary to other values?
+	</p>
+
+	<h2 id="background-representation">Representation</h2>
+
+	<p>
+		Many typed programming languages have datatypes like integers, floats, strings, etc. These
+		datatypes tell the computer how to interpret binary data. Instead of modifying bits and bytes to
+		add two integers, we can use arithmetic operators, like a plus (+), and the computer will know
+		what to do at binary level. Dynamically typed languages do the same, but also removes the need
+		to tell which variable has which type.
+	</p>
+
+	<p>
+		A common datatype is an unsigned integer (uint). When an integer is signed, the first bit will
+		be used to store whether the integer is a positive or negative integer. When it’s unsigned, the
+		data type can only store positive integers. So a uint is an integer that must be equal or
+		greater than 0.
+	</p>
+
+	<p>
+		Let’s have look at the binary representation of such an integer, in 8 bits. A uint is a positive
+		integer starting from 0. Incrementing is very similar to our decimal system:
+	</p>
+
+	<ol>
+		<li>Increment the least significant number</li>
+		<li>
+			If least significant number exceeds maximum value, reset and increment the number one place
+			left
+		</li>
+	</ol>
+
+	<h2 id="background-why-use-binary">Why use binary?</h2>
+	<p>
+		At this point you might wonder why you’re reading this page. Why should you understand bits and
+		bytes? How can you benefit from this knowledge when programming in higher level languages?
+	</p>
+
+	<p>
+		Imagine we’re building a web application that needs data from a webserver. The conventional
+		communication format is JavaScript Object Notation (JSON). Let’s say we’re sending an array of 8
+		random integers ranging from 0 to 255:
+	</p>
+
+	<pre><code>[
+	10,
+	240,
+	106,
+	236,
+	244,
+	226,
+	139,
+	30
+]</code></pre>
+
+	<p>
+		Because the data is sent as a string with a specific format, we’ll need 8 bits per character,
+		assuming it’s UTF-8 encoded. Ignoring whitespace, above JSON string is 31 characters, making it
+		248 bits.
+	</p>
+
+	<p>
+		We can send the exact same data in binary, but way more efficient. Instead of returning a
+		formatted string, because that’s what JSON is, we can send the data as one binary blob. For
+		numbers ranging from 0 to 255, we still need 8 bits to represent each. Because each number has a
+		fixed bit length, we can just concatinate them. The complete blob will be 64 bits long, saving
+		just under 75% of data!
+	</p>
+
+	<pre><code>00001010 // 10
+11110000 // 240
+01101010 // 106
+11101100 // 236
+11110100 // 244
+11100010 // 226
+10001011 // 139
+00011110 // 30</code></pre>
+
+	<p>
+		The strength of JSON isn’t size, but flexibility. Because it’s a formatted string, it’s length
+		and contents is irrelevant. The strength of binary is it’s size. It all depends on your
+		use-case, but a 75% reduction of bandwidth is worth considering.
+	</p>
+</ContentLayout>

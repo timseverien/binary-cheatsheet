@@ -1,20 +1,95 @@
 ---
-import { OutputType, PlaygroundEmbed } from '../components/Playground';
-import { PlaygroundBitwiseShiftOperator } from '../components/Playground/Embed';
+import { TableOfContents } from '../application/types';
+import {
+	DemoBitwiseBinaryOperator,
+	DemoBitwiseShiftOperator,
+	DemoBitwiseUnaryOperator,
+} from '../components/Demo';
+import { PracticalReadBit } from '../components/Demo/Practical';
+import {
+	Not,
+	And,
+	Or,
+	Xor,
+	ShiftLeft,
+	ShiftRight,
+	ShiftRightUnsigned,
+} from '../components/Operator';
 import { BinaryString } from '../functions/binaryString';
 import ContentLayout from '../layouts/ContentLayout.astro';
 
 const PAGE_TITLE = 'The Binary Cheatsheet';
 const PAGE_DESCRIPTION = 'A cheatsheet for bits and bytes';
 
-const tableOfContents = [
+const tableOfContents: TableOfContents = [
 	{
-		url: '#background',
-		title: 'Background',
+		url: '#operators',
+		title: 'Operators',
 		children: [
 			{
-				url: '#representation',
-				title: 'Representation',
+				url: '#operators-not',
+				title: 'NOT',
+				operator: '~',
+			},
+			{
+				url: '#operators-and',
+				title: 'AND',
+				operator: '&',
+			},
+			{
+				url: '#operators-or',
+				title: 'OR',
+				operator: '|',
+			},
+			{
+				url: '#operators-xor',
+				title: 'XOR',
+				operator: '^',
+			},
+			{
+				url: '#operators-shift-left',
+				title: 'Left shift',
+				operator: '<<',
+			},
+			{
+				url: '#operators-shift-right',
+				title: 'Right shift',
+				operator: '>>',
+			},
+			{
+				url: '#operators-shift-right-unsigned',
+				title: 'Unsigned right shift',
+				operator: '>>>',
+			},
+		],
+	},
+	{
+		url: '#practical',
+		title: 'Practical',
+		children: [
+			{
+				url: '#practical-get',
+				title: 'Get a bit',
+			},
+			{
+				url: '#practical-set',
+				title: 'Set a bit',
+			},
+			{
+				url: '#practical-toggle',
+				title: 'Toggle a bit',
+			},
+			{
+				url: '#practical-flags',
+				title: 'Store flags',
+			},
+			{
+				url: '#practical-hex-to-rgb',
+				title: 'Hex to RGB',
+			},
+			{
+				url: '#practical-rgb-to-hex',
+				title: 'RGB to hex',
 			},
 		],
 	},
@@ -22,146 +97,174 @@ const tableOfContents = [
 ---
 
 <ContentLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION} tableOfContents={tableOfContents}>
-	<h2 id="background">Background</h2>
+	<h1>The Binary Cheatsheet</h1>
 	<p>
-		Looking at your computer screen, what do you see? Text, colours, images, videos and much more.
-		Everything you see, everything you store on your computer, every button you press is a stream of
-		ones and zeros. Why? How does it work?
+		In this cheatsheet, you’ll find brief explainers of all bitwise operators and practical
+		examples.
 	</p>
-
-	<p>
-		Computers parts are able to store data via tiny electronic components called <a
-			href="https://en.wikipedia.org/wiki/Flip-flop_(electronics)">flip-flops</a
-		>. They can be set to either of two states: “one” or “zero.” These components can store a single
-		value we call a bit.
-	</p>
-
-	<p>
-		To store other values than ones and zeroes, a series of bits can be grouped. If one bit can have
-		two different states, a group of two bits can have four. A group of four bits can have up to
-		sixteen unique states. The amount of different states grows exponentially for every bit that is
-		added to a group. <code>s = n<sup>2</sup></code>, where s is the number of states, and n the
-		number of bits within the group.
-	</p>
-
-	<p>
-		The de-facto standard is to call a group of bits a byte, and one byte contains 8 bits. The more
-		explicit term for an 8-bit group is octet.
-	</p>
-
-	<p>
-		Binary is the purest representation of data on computers, but it isn’t easy to understand what
-		the data represents. How do we get from binary to other values?
-	</p>
-
-	<h3 id="representation">Representation</h3>
-
-	<p>
-		Many typed programming languages have datatypes like integers, floats, strings, etc. These
-		datatypes tell the computer how to interpret binary data. Instead of modifying bits and bytes to
-		add two integers, we can use arithmetic operators, like a plus (+), and the computer will know
-		what to do at binary level. Dynamically typed languages do the same, but also removes the need
-		to tell which variable has which type.
-	</p>
-
-	<p>
-		A common datatype is an unsigned integer (uint). When an integer is signed, the first bit will
-		be used to store whether the integer is a positive or negative integer. When it’s unsigned, the
-		data type can only store positive integers. So a uint is an integer that must be equal or
-		greater than 0.
-	</p>
-
-	<p>
-		Let’s have look at the binary representation of such an integer, in 8 bits. A uint is a positive
-		integer starting from 0. Incrementing is very similar to our decimal system:
-	</p>
-
-	<ol>
-		<li>Increment the least significant number</li>
-		<li>
-			If least significant number exceeds maximum value, reset and increment the number one place
-			left
-		</li>
-	</ol>
-
-	<!-- TODO: copy from old site -->
 
 	<h2 id="operators">Operators</h2>
 
 	<p>
-		Operators Bitwise operators are operators that allow you to modify data on bit-level. Welcome to <a
-			href="https://en.wikipedia.org/wiki/Boolean_algebra">Boolean algebra</a
+		Bitwise operators are operators that allow you to modify data on bit-level. Welcome to <a
+			href="https://en.wikipedia.org/wiki/Boolean_algebra"
+			target="_blank">Boolean algebra</a
 		>.
 	</p>
 
-	<small
-		>In the following examples, we will define binary data using “binary literals.” This means they
-		are prefixed with 0b, which is common in many programming languages. For more information, see
-		<a href="https://timseverien.github.io/binary-cheatsheet/#notes">notes</a>.</small
-	>
-
-	<h3 id="operators-not">NOT</h3>
+	<h3 id="operators-not"><Not /></h3>
 	<p>
-		Flipping, or negating bits can be done using the <b>NOT (~)</b> operator. The operator toggles all
-		the bits.
+		Flipping (or negating) bits can be done using the <b><Not /></b> operator — it toggles all bits.
 	</p>
 
-	<!-- TODO create demos and copy content from old site -->
+	<DemoBitwiseUnaryOperator initialBinaryValue={'1001' as BinaryString} initialOperator="~" />
 
-	<h3 id="operators-shift">Shift</h3>
-	<p>Bit shifting is the act of shifting a set of bits to the left or the right.</p>
-
+	<h3 id="operators-and"><And /></h3>
 	<p>
-		To shift bits to the left, use <code>&lt;&lt;</code>. Additional bits, 0s, will be added on the
-		right-hand side.
+		The <b><And /></b> operator returns 1 for each bit if the corresponding bits of both operands are
+		1’s.
+	</p>
+
+	<DemoBitwiseBinaryOperator
+		initialLeftBinaryValue={'1010' as BinaryString}
+		initialRightBinaryValue={'1001' as BinaryString}
+		initialOperator="&"
+		client:idle
+	/>
+
+	<h3 id="operators-or"><Or /></h3>
+	<p>The <b><Or /></b> operator returns 1’s for each bit if either of the operands is 1.</p>
+
+	<DemoBitwiseBinaryOperator
+		initialLeftBinaryValue={'1010' as BinaryString}
+		initialRightBinaryValue={'1001' as BinaryString}
+		initialOperator="|"
+		client:idle
+	/>
+
+	<h3 id="operators-xor"><Xor /></h3>
+	<p>
+		Similar to the <b><Or /></b> operator, the <b><Xor /></b> (exclusive OR) operator only returns 1’s
+		if either of the corresponding bits of the operands is 1, but 0 if both are.
+	</p>
+
+	<DemoBitwiseBinaryOperator
+		initialLeftBinaryValue={'1010' as BinaryString}
+		initialRightBinaryValue={'1001' as BinaryString}
+		initialOperator="^"
+		client:idle
+	/>
+
+	<h3 id="operators-shift-left"><ShiftLeft /></h3>
+	<p>
+		The <b><ShiftLeft /></b> moves bits to the left. Additional bits, 0s, will be added on the right-hand
+		side.
 	</p>
 
 	<div>
-		<PlaygroundBitwiseShiftOperator
-			initialBinaryValue="1001"
+		<DemoBitwiseShiftOperator
+			initialBinaryValue={'1001' as BinaryString}
 			initialOperator="<<"
 			initialShiftValue={2}
 			client:idle
 		/>
 	</div>
 
+	<h3 id="operators-shift-right"><ShiftRight /></h3>
 	<p>
-		To shift bits the other way, use <code>&gt;&gt;</code>. <b
-			>This will discard the right-hand bits.</b
-		>
+		The <b><ShiftRight /></b> moves bits to the right. Right-hand bits will be discarded.
 	</p>
 
-	<small
-		>Note that this operation retains the first bit for signed integers. This means that negative
-		integers stay negative.</small
-	>
+	<small>This operation preserves the sign of the value — negative numbers stay negative.</small>
 
 	<div>
-		<PlaygroundBitwiseShiftOperator
-			initialBinaryValue="1001"
+		<DemoBitwiseShiftOperator
+			initialBinaryValue={'1001' as BinaryString}
 			initialOperator=">>"
 			initialShiftValue={2}
 			client:idle
 		/>
 	</div>
 
+	<h3 id="operators-shift-right-unsigned"><ShiftRightUnsigned /></h3>
 	<p>
-		When shifting bits to the right, notice the amount of bits decreases? A zero-fill right shift (<code
-			>&gt;&gt;&gt;</code
-		>) also adds bits on the left-hand side, so the amount of bits is unchanged.
+		The <b><ShiftRightUnsigned /></b> also shift bits right, but zero-fills from the left.
 	</p>
 
 	<small
-		>Unlike a regular right shift, the zero-fill right shift also moves the sign bit in a signed
-		integer, which is often undesired.</small
+		>Unlike the <b><ShiftRight /></b>, this operation assumes values are unsigned. When used on a
+		signed integer, the bit for the sign will also shift, making it a positive integer.</small
 	>
 
 	<div>
-		<PlaygroundBitwiseShiftOperator
-			initialBinaryValue="1001"
+		<DemoBitwiseShiftOperator
+			initialBinaryValue={'1001' as BinaryString}
 			initialOperator=">>>"
 			initialShiftValue={2}
 			client:idle
 		/>
 	</div>
+
+	<h2 id="practical">Practical</h2>
+
+	<h3 id="practical-get">Read a bit at a specific position</h3>
+	<p>
+		First, a set of bits must be shifted to the right until the bit of interest is all the way on
+		the right. To discard all other bits, we can use the <b><And /></b> operator with a so called <b
+			>bitmask</b
+		>.
+	</p>
+	<PracticalReadBit
+		initialBitmask={'1' as BinaryString}
+		initialShift={2}
+		initialValue={'1101' as BinaryString}
+	/>
+
+	<!-- DEMO -->
+	<p>
+		The bitmask determines how much of the info is returned, so to get two bits, a two-bit bitmask
+		is required.
+	</p>
+	<!-- DEMO -->
+
+	<h3 id="practical-set">Set a bit</h3>
+	<p>
+		To set a specific bit to 1, you can use the <b><Or /></b> operator. First, the bit you wish to set
+		is shifted to the position you wish to set it to, the <b><Or /></b> operator does the rest.
+	</p>
+	<!-- DEMO -->
+	<p>To set a specific bit to 0, you must use the <b><And /></b> operator.</p>
+	<!-- DEMO -->
+	<p>
+		If the new bit has a dynamic value, the following allows you to change a bit to any value at a
+		given position.
+	</p>
+	<!-- DEMO -->
+
+	<h3 id="practical-toggle">Toggle a bit at a specific position</h3>
+	<p>
+		The <b><Xor /></b> operator returns 1 if operands are unequal. By having one operand set to 1, it
+		toggles.
+	</p>
+	<!-- DEMO -->
+
+	<h3 id="practical-flags">Store flags</h3>
+	<p>
+		Flags, a fancy name for “options,” can easily be stored in a byte. This example is inspired by
+		the <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol" target="_blank"
+			>TCP protocol</a
+		>.
+	</p>
+	<!-- DEMO -->
+
+	<h3 id="practical-hex-to-rgb">Hex to RGB</h3>
+	<p>
+		Colours are often stored as hexadecimals. Sometimes, you will want to get the value of each
+		channel. Note that hexadecimals are just another representation of uints.
+	</p>
+	<!-- DEMO -->
+
+	<h3 id="practical-rgb-to-hex">RGB to hex</h3>
+	<p>You can do the opposite as well; convert RGB to hexadecimals.</p>
+	<!-- DEMO -->
 </ContentLayout>

@@ -1,6 +1,6 @@
 import createIMaskInstance from 'imask';
 import { createRef, FunctionalComponent, JSX } from 'preact';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import { BinaryString } from '../../functions/binaryString';
 import { HexadecimalString } from '../../functions/hexadecimalString';
 import { IntegerString } from '../../functions/integerString';
@@ -17,7 +17,7 @@ export const BinaryInput = ({
 	onChange,
 	...props
 }: Omit<JSX.HTMLAttributes, 'onChange' | 'value'> & {
-	value: string;
+	value: BinaryString;
 	onChange: (value: BinaryString) => any;
 }) => (
 	<TextField
@@ -33,7 +33,7 @@ export const HexadecimalInput = ({
 	value,
 	onChange,
 }: {
-	value: string;
+	value: HexadecimalString;
 	onChange: (value: HexadecimalString) => any;
 }) => (
 	<TextField
@@ -46,11 +46,13 @@ export const HexadecimalInput = ({
 export const IntegerInput = ({
 	value,
 	onChange,
-}: {
-	value: string;
+	...props
+}: JSX.HTMLAttributes & {
+	value: IntegerString;
 	onChange: (value: IntegerString) => any;
 }) => (
 	<TextField
+		{...props}
 		mask={/^[0-9]*$/i}
 		value={value}
 		onChange={(value: string) => onChange(value as IntegerString)}
@@ -65,11 +67,22 @@ const TextField: FunctionalComponent<
 	}
 > = ({ mask, value, onChange, ...props }) => {
 	const ref = createRef<HTMLInputElement>();
-	let iMaskInstance = null;
 
 	useEffect(() => {
-		iMaskInstance = ref.current ? createIMaskInstance(ref.current, { mask }) : null;
-		console.log(iMaskInstance);
+		if (!ref.current) {
+			return;
+		}
+
+		console.log('Create imask instance');
+		const instance = createIMaskInstance(ref.current, { mask: /.*/ });
+
+		console.log('Register imask handler');
+		instance.on('accept', () => {
+			console.log('imask accept event', instance.value, instance.unmaskedValue);
+			onChange(instance.value, instance.unmaskedValue);
+		});
+
+		return () => instance.destroy();
 	}, [ref.current]);
 
 	return (
@@ -78,7 +91,11 @@ const TextField: FunctionalComponent<
 			type="text"
 			ref={ref}
 			value={value}
-			onInput={() => iMaskInstance && onChange(iMaskInstance.value, iMaskInstance.valueUnmasked)}
+			// onInput={() => {
+			// 	console.log(iMask.value);
+			// 	iMask && console.log({ value: iMask.value, unmasked: iMask.unmasked });
+			// 	iMask && onChange(iMask.value, iMask.valueUnmasked);
+			// }}
 		/>
 	);
 };

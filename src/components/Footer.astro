@@ -1,0 +1,33 @@
+---
+import Content from './Content.astro';
+---
+
+<footer>
+	<Content>
+		<p>
+			Made with <span class="text-red">♥</span>, by <span class="indenial">amnesic</span>
+			<a href="https://twitter.com/timseverien" target="_blank">Tim Severien</a>.
+		</p>
+	</Content>
+</footer>
+
+<style>
+	footer {
+		color: #222;
+		padding: var(--page-margin);
+		text-align: end;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	.text-red {
+		color: #f00;
+	}
+
+	.indenial {
+		color: #888;
+		text-decoration: line-through;
+	}
+</style>

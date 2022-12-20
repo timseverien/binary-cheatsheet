@@ -1,5 +1,6 @@
 ---
 import 'modern-css-reset';
+import Footer from '../components/Footer.astro';
 import Navigation from '../components/Navigation.astro';
 import '../styles/main.css';
 
@@ -28,8 +29,20 @@ const SITE_LOCALE = 'en-GB';
 		<title>{title}</title>
 	</head>
 	<body>
-		<Navigation />
-
-		<slot />
+		<div class="layout">
+			<header>
+				<Navigation />
+			</header>
+			<slot />
+			<Footer />
+		</div>
 	</body>
 </html>
+
+<style>
+	.layout {
+		display: flex;
+		flex-direction: column;
+		gap: var(--page-margin);
+	}
+</style>

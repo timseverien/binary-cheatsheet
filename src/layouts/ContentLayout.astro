@@ -1,55 +1,60 @@
 ---
+import { TableOfContents } from '../application/types';
+import Content from '../components/Content.astro';
 import Flow from '../components/Flow.astro';
+import VisuallyHidden from '../components/VisuallyHidden.astro';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
 	title: string;
 	description: string;
-	tableOfContents: {
-		title: string;
-		url: string;
-		children?: {
-			title: string;
-			url: string;
-		}[];
-	}[];
+	tableOfContents: TableOfContents;
 }
 
 const { title, description, tableOfContents } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-	<div class="layout">
-		<div>
-			<div class="sidebar">
-				<h2>Table of contents</h2>
+	<Content
+		><div class="layout">
+			<div>
+				<div class="sidebar">
+					<VisuallyHidden><h2>Table of contents</h2></VisuallyHidden>
 
-				<ul>
-					{
-						tableOfContents.map((p) => (
-							<li>
-								<a href={p.url}>{p.title}</a>
+					<ul>
+						{
+							tableOfContents.map((p) => (
+								<li>
+									<a href={p.url}>{p.title}</a>
 
-								{p.children && (
-									<ul>
-										{p.children.map((p) => (
-											<li>
-												<a href={p.url}>{p.title}</a>
-											</li>
-										))}
-									</ul>
-								)}
-							</li>
-						))
-					}
-				</ul>
+									{p.children && (
+										<ul>
+											{p.children.map((p) => (
+												<li>
+													<a href={p.url}>
+														{p.title}
+														{p.operator && (
+															<>
+																(<code>{p.operator}</code>)
+															</>
+														)}
+													</a>
+												</li>
+											))}
+										</ul>
+									)}
+								</li>
+							))
+						}
+					</ul>
+				</div>
 			</div>
-		</div>
 
-		<Flow>
-			<slot />
-		</Flow>
-	</div>
+			<Flow>
+				<slot />
+			</Flow>
+		</div>
+	</Content>
 </BaseLayout>
 
 <style>
@@ -57,12 +62,10 @@ const { title, description, tableOfContents } = Astro.props;
 		display: grid;
 		grid-template-columns: 1fr 2fr;
 		gap: 1em;
-		max-width: 90ch;
-		margin-inline: auto;
 	}
 
 	.sidebar {
 		position: sticky;
-		top: 1em;
+		top: var(--page-margin);
 	}
 </style>
